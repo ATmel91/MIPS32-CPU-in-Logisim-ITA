@@ -1,0 +1,63 @@
+32-bit MIPS CPU made by Ezra W. With 64K x 32 instructions ROM. And 2M x 32 data RAM.
+
+KEY:
+OP        = Operand
+rs        = R-type: reg source 1, I-type: reg containing base addr; (RD-DATA-1)
+rt        = R-type: reg source 2, I-type: reg destination / source; (RD-DATA-2)
+rd        = reg destination; (WR-REG)
+shamt     = Shift amount;
+funct     = function code, identifies the specific R-type format instruction;
+immediate = Offset, or value;
+Address   = place to jump to or load information, (addr);
+
+Instruction Formats:
+
+R-type: OP:     rs:    rt:    rd:    shamt: funct:
+        000000--00000--00000--00000--00000--000000
+        reg-dest: reg-wr: mem-wr: mem-rd: pc-src: alu-op: alu-src: mem-to-reg:
+        1,        1,      0,      0,      0,      xxx,    0,       0;
+
+I-type: OP:     rs:    rt:    immediate:
+        000000--00000--00000--0000000000000000
+        reg-dest: reg-wr: mem-wr: mem-rd: pc-src: alu-op: alu-src: mem-to-reg:
+        1,        1,      0,      0,      0,      xxx,    0,       0;
+
+
+J-type: OP:     address:
+        000000--00000000000000000000000000
+        reg-dest: reg-wr: mem-wr: mem-rd: pc-src: alu-op: alu-src: mem-to-reg:
+        1,        1,      0,      0,      0,      xxx,    0,       0;
+
+Supported Instructions:
+add,    Add
+addi,   Add Immediate
+addiu,  Add Immediate Unsigned
+sub,    Subtract
+beq,    Branch on Equal
+bne,    Branch on Not Equal
+bgtz,   Branch on Greater Than Zero
+j,      Jump
+lw,     Load Word
+or,     Logical Or
+ori,    Logical Or Immediate
+and,    Logical And
+andi,   Logical And Immediate
+slt,    Set Less Than
+slti,   Set Less Than Immediate
+sw,     Store Word
+
+syscall:  
+    print integer, 0x0; 
+    exit
+
+IN THE MAKING:
+sltu,   Set Less Than Unsigned
+sltiu,  Set Less Than Unsigned Immediate
+sll,    Shift Left Logical
+srl,    Shift Right Logical
+xor,    Logical Xor
+bgezal, Branch on Greater than or Equal to Zero And Link
+blez,   Branch on Less than or Equal to Zero
+bltz,   Branch on LEss Than Zero
+lb,     Load Byte
+sb,     Store Byte
